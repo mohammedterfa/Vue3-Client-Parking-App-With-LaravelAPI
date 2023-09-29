@@ -37,6 +37,8 @@ export const useVehicle = defineStore("vehicle", () => {
       })
       .finally(() => (loading.value = false));
   }
+
+ 
    
   function getVehicle(vehicle) {
     window.axios.get(`vehicles/${vehicle.id}`).then((response) => {
@@ -70,7 +72,10 @@ export const useVehicle = defineStore("vehicle", () => {
       })
       .finally(() => (loading.value = false));
   }
- 
+
+  function deleteVehicle(vehicle) {
+    window.axios.delete(`vehicles/${vehicle.id}`).then(getVehicles);
+  }
   return {
     form,
     errors,
@@ -81,5 +86,6 @@ export const useVehicle = defineStore("vehicle", () => {
     getVehicles,
     updateVehicle,
     getVehicle,
+    deleteVehicle,
   };
 });
